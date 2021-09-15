@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Ressources\CircuitsResource;
+use App\Http\Resources\CircuitResource;
 
 use App\Models\Circuit;
 use Illuminate\Http\Request;
@@ -13,18 +13,15 @@ class CircuitController extends Controller
 
     public function index()
     {
-        return Response(Circuits::all());
+        return Response(Circuit::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $circuit = new Circuit();
+        $circuit->createCircuit($request->all());
+        return response()->json($circuit, 281);
     }
 
     /**
@@ -33,9 +30,18 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function show(circuits $circuits)
+    public function show($circuits)
     {
-        //
+        if($circuit) {
+            return new CircuitResource($circuit);
+        }
+
+        return response()->json('driver at not found', 404);
+
+        $driver = new Circuit();
+        $driver->FindOrFail($circuit);
+
+        return Response($circuit);
     }
 
     /**
@@ -45,9 +51,11 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, circuits $circuits)
+    public function update(Request $request, circuit $circuits)
     {
-        //
+        $circuit->updateDriver($circuit->all());
+
+        return response()->json($circuit, 281);
     }
 
     /**
