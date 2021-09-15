@@ -24,12 +24,6 @@ class CircuitController extends Controller
         return response()->json($circuit, 281);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\circuits  $circuits
-     * @return \Illuminate\Http\Response
-     */
     public function show($circuit)
     {
         if($circuit) {
@@ -44,28 +38,18 @@ class CircuitController extends Controller
         return Response($circuit);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\circuits  $circuits
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, circuit $circuit)
     {
-        $circuit->updateDriver($circuit->all());
+        $circuit->updateCircuit($circuit->all());
 
         return response()->json($circuit, 281);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\circuits  $circuits
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(circuit $circuit)
     {
-        //
+        $circuit->delete();
+        return response()->json('Driver deleted', 204);
     }
 }

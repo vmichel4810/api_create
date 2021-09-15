@@ -25,5 +25,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResources([
     'drivers' => DriverController::class,
     'circuits' => CircuitController::class,
+    'constructors' => ConstructorController::class,
 ]);
+
+Route::post('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken($request->token_name);
+
+    return ['token' => $token->plainTextToken];
+});
+
+Route::post('/register',[AuthController::class,'register']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/products',[ProductController::class,'store']);
+    Route::put('/products/{id}',[ProductController::class,'update']);
+    Route::delete('/products/{id}',[ProductController::class,'delete']);
+    Route::post('/logout',[AuthController::class,'logout']);
+});
 
