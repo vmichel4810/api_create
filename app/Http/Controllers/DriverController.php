@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Ressources\DriverResource;
+use App\Http\Resources\DriverResource;
 
 use App\Models\Driver;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class DriverController extends Controller
         return Response(Driver::all());
     }
 
-    public function show($id)
+    public function show($driver)
     {
         if($driver) {
             return new DriverResource($driver);
