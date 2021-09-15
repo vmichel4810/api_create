@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Ressources\ConstructorResource;
+use App\Http\Resources\ConstructorResource;
 use App\Models\Constructor;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,7 @@ class ConstructorController extends Controller
         return response()->json('driver at not found', 404);
 
         $constructor = new Constructor();
-        $driver->FindOrFail($id);
+        $constructor->FindOrFail($constructor);
 
         return Response($constructor);
     }
