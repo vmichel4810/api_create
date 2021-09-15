@@ -15,22 +15,26 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id('resultId');
-            $table->integer('raceId');
-            $table->integer('driverId');
-            $table->integer('constructorId');
+            $table->integer('raceId')->default(0);
+            $table->foreign('raceId')->references('raceId')->on('races');
+            $table->integer('driverId')->default(0);
+            $table->foreign('driverId')->references('driverId')->on('drivers');
+            $table->integer('constructorId')->default(0);
+            $table->foreign('constructorId')->references('constructorId')->on('constructors');
             $table->integer('number')->nullable();
-            $table->integer('grid');
+            $table->integer('grid')->default(0);
             $table->integer('position')->nullable();
             $table->string('positionText');
-            $table->integer('positionOrder');
-            $table->float('points');
-            $table->integer('laps');
+            $table->integer('positionOrder')->default(0);
+            $table->float('points')->default(0);
+            $table->integer('laps')->default(0);
             $table->string('time')->nullable();
             $table->integer('milliseconds')->nullable();
             $table->integer('fastesLap')->nullable();
-            $table->integer('rank')->nullable();
+            $table->integer('rank')->nullable()->default(0);
             $table->string('fastesLapTime')->nullable();
             $table->string('fastesLapSpeed')->nullable();
+            $table->string("statusId")->default(0);
 
             $table->timestamps();
         });

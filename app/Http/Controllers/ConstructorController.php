@@ -26,7 +26,7 @@ class ConstructorController extends Controller
     }
 
 
-    public function show($id)
+    public function show($constructor)
     {
         if($constructor) {
             return new ConstructorResource($constructor);

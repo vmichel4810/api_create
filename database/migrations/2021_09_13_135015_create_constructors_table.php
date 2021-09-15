@@ -16,9 +16,9 @@ class CreateConstructorsTable extends Migration
         Schema::create('constructors', function (Blueprint $table) {
             $table->id('constructorId');
             $table->string('constructorRef');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('nationality')->nullable();
-            $table->string('url')->unique();
+            $table->string('url');
             $table->timestamps();
         });
     }
