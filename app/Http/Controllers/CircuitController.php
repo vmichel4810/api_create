@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\constructors;
-use Illuminate\Http\Request;
+use App\Http\Ressources\CircuitsResource;
 
-class ConstructorsController extends Controller
+use App\Models\Circuit;
+use Illuminate\Http\Request;
+use Illuminate\Http\Client\Response;
+
+class CircuitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return Response(Circuits::all());
     }
 
     /**
@@ -31,10 +30,10 @@ class ConstructorsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\constructors  $constructors
+     * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function show(constructors $constructors)
+    public function show(circuits $circuits)
     {
         //
     }
@@ -43,10 +42,10 @@ class ConstructorsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\constructors  $constructors
+     * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, constructors $constructors)
+    public function update(Request $request, circuits $circuits)
     {
         //
     }
@@ -54,10 +53,10 @@ class ConstructorsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\constructors  $constructors
+     * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function destroy(constructors $constructors)
+    public function destroy(circuits $circuits)
     {
         //
     }

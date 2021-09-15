@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\circuits;
+use App\Models\Results;
 use Illuminate\Http\Request;
 
-class CircuitsController extends Controller
+class ResultController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class CircuitsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\circuits  $circuits
+     * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function show(circuits $circuits)
+    public function show(result $result)
     {
         //
     }
@@ -43,10 +43,10 @@ class CircuitsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\circuits  $circuits
+     * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, circuits $circuits)
+    public function update(Request $request, results $result)
     {
         //
     }
@@ -54,10 +54,10 @@ class CircuitsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\circuits  $circuits
+     * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function destroy(circuits $circuits)
+    public function destroy(Result $result)
     {
         //
     }

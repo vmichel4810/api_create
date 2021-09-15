@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\races;
+use App\Models\Race;
 use Illuminate\Http\Request;
 
-class RacesController extends Controller
+class RaceController extends Controller
 {
     /**
      * Display a listing of the resource.
