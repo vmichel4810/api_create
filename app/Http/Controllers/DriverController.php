@@ -25,7 +25,7 @@ class DriverController extends Controller
         return response()->json('driver at not found', 404);
 
         $driver = new Driver();
-        $driver->FindOrFail($id);
+        $driver->FindOrFail($driver);
 
         return Response($driver);
     }

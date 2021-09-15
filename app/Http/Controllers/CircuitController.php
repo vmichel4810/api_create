@@ -13,7 +13,7 @@ class CircuitController extends Controller
 
     public function index()
     {
-        return Response(Circuits::all());
+        return Response(Circuit::all());
     }
 
     /**
@@ -33,7 +33,7 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function show(circuits $circuits)
+    public function show(circuit $circuit)
     {
         //
     }
@@ -45,7 +45,7 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, circuits $circuits)
+    public function update(Request $request, circuit $circuit)
     {
         //
     }
@@ -56,7 +56,7 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function destroy(circuits $circuits)
+    public function destroy(circuit $circuit)
     {
         //
     }
