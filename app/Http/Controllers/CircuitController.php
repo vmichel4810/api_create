@@ -30,7 +30,7 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function show($circuits)
+    public function show($circuit)
     {
         if($circuit) {
             return new CircuitResource($circuit);
@@ -51,7 +51,7 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, circuit $circuits)
+    public function update(Request $request, circuit $circuit)
     {
         $circuit->updateDriver($circuit->all());
 
@@ -64,7 +64,7 @@ class CircuitController extends Controller
      * @param  \App\Models\circuits  $circuits
      * @return \Illuminate\Http\Response
      */
-    public function destroy(circuits $circuits)
+    public function destroy(circuit $circuit)
     {
         //
     }
