@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Results;
+use App\Models\Result;
 use Illuminate\Http\Request;
+use Illuminate\Http\Client\Response;
 
 class ResultController extends Controller
 {
@@ -14,7 +15,7 @@ class ResultController extends Controller
      */
     public function index()
     {
-        //
+        return Response(Result::all());
     }
 
     /**
@@ -25,7 +26,9 @@ class ResultController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = new Result();
+        $result->createResult($request->all());
+        return response()->json($result, 281);
     }
 
     /**
@@ -34,9 +37,18 @@ class ResultController extends Controller
      * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function show(result $result)
+    public function show($result)
     {
-        //
+        if($result) {
+            return new ResultResource($result);
+        }
+
+        return response()->json('Result at not found', 404);
+
+        $result = new Result();
+        $result->FindOrFail($id);
+
+        return Response($result);
     }
 
     /**
@@ -46,9 +58,10 @@ class ResultController extends Controller
      * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, results $result)
-    {
-        //
+    public function update($request, $result) {
+        $result->updateResult($result->all());
+
+        return response()->json($result, 281);
     }
 
     /**
@@ -57,8 +70,8 @@ class ResultController extends Controller
      * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Result $result)
-    {
-        //
+    public function destroy($result) {
+        $result->delete();
+        return response()->json('Result deleted', 204);
     }
 }

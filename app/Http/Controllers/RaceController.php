@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Race;
 use Illuminate\Http\Request;
+use Illuminate\Http\Client\Response;
 
 class RaceController extends Controller
 {
@@ -14,7 +15,7 @@ class RaceController extends Controller
      */
     public function index()
     {
-        //
+        return Response(Race::all());
     }
 
     /**
@@ -25,18 +26,27 @@ class RaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $race = new Race();
+        $race->createRace($request->all());
+        return response()->json($race, 281);
     }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function show(races $races)
+    public function show($race)
     {
-        //
+        if($race) {
+            return new RaceResource($race);
+        }
+        return response()->json('race at not found', 404);
+
+        $race = new Race();
+        $race->FindOrFail($id);
+
+        return Response($race);
     }
 
     /**
@@ -46,9 +56,10 @@ class RaceController extends Controller
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, races $races)
-    {
-        //
+    public function update($request, $race) {
+        $race->updateRace($race->all());
+
+        return response()->json($race, 281);
     }
 
     /**
@@ -57,8 +68,8 @@ class RaceController extends Controller
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function destroy(races $races)
-    {
-        //
+    public function destroy($race) {
+        $race->delete();
+        return response()->json('Race deleted', 204);
     }
 }
