@@ -22,5 +22,11 @@ class Race extends Model
         $this->date = $data['date'];
         $this->time = $data['time'];
         $this->url = $data['url'];
+        $this->save();
+    }
+
+    public function updateRace($data){
+        $this->raceId = $data['raceId'];
+        $this->save();
     }
 }

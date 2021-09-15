@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RaceResource;
+
 use App\Models\Race;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
@@ -28,7 +30,7 @@ class RaceController extends Controller
     {
         $race = new Race();
         $race->createRace($request->all());
-        return response()->json($race, 281);
+        return response()->json($race, 201);
     }
     /**
      * Display the specified resource.
@@ -44,7 +46,7 @@ class RaceController extends Controller
         return response()->json('race at not found', 404);
 
         $race = new Race();
-        $race->FindOrFail($id);
+        $race->FindOrFail($race);
 
         return Response($race);
     }
@@ -59,7 +61,7 @@ class RaceController extends Controller
     public function update($request, $race) {
         $race->updateRace($race->all());
 
-        return response()->json($race, 281);
+        return response()->json($race, 201);
     }
 
     /**

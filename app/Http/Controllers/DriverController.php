@@ -34,13 +34,13 @@ class DriverController extends Controller
     {
         $driver = new Driver();
         $driver->createDriver($request->all());
-        return response()->json($driver, 281);
+        return response()->json($driver, 201);
     }
 
     public function update($request, $driver) {
         $driver->updateDriver($driver->all());
 
-        return response()->json($driver, 281);
+        return response()->json($driver, 201);
     }
 
     public function destroy($driver) {

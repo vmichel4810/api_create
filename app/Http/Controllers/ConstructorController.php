@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Ressources\ConstructorResource;
+use App\Http\Resources\ConstructorResource;
 use App\Models\Constructor;
 use Illuminate\Http\Request;
 
@@ -22,7 +22,7 @@ class ConstructorController extends Controller
     {
         $constructor = new Constructor();
         $constructor->createConstructor($request->all());
-        return response()->json($constructor, 281);
+        return response()->json($constructor, 201);
     }
 
 
@@ -35,7 +35,7 @@ class ConstructorController extends Controller
         return response()->json('driver at not found', 404);
 
         $constructor = new Constructor();
-        $driver->FindOrFail($id);
+        $constructor->FindOrFail($constructor);
 
         return Response($constructor);
     }
@@ -45,7 +45,7 @@ class ConstructorController extends Controller
     {
         $constructor->updateConstructor($constructor->all());
 
-        return response()->json($constructor, 281);
+        return response()->json($constructor, 201);
     }
 
     public function destroy($constructor)
