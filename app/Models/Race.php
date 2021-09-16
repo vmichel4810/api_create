@@ -29,4 +29,14 @@ class Race extends Model
         $this->raceId = $data['raceId'];
         $this->save();
     }
+
+    public function circuit($data){
+
+        return $this->belongsto(Circuit::class);
+    }
+
+    public function results($data){
+
+        return $this->hasMany(Result::class);
+    }
 }

@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+// resources
+use App\Http\Resources\ResultCollection;
+use App\Http\Resources\ResultResource;
+//models
 use App\Models\Result;
+//illuminate
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 
@@ -15,7 +19,7 @@ class ResultController extends Controller
      */
     public function index()
     {
-        return Response(Result::all());
+        return new ResultCollection(Result::paginate(15));
     }
 
     /**
@@ -46,7 +50,7 @@ class ResultController extends Controller
         return response()->json('Result at not found', 404);
 
         $result = new Result();
-        $result->FindOrFail($id);
+        $result->FindOrFail($result);
 
         return Response($result);
     }

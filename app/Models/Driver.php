@@ -26,4 +26,8 @@ class Driver extends Model
         $this->driverRef = $data['driverRef'];
         $this->save();
     }
+
+    public function results($data) {
+        return $this->hasMany(Result::class);
+    }
 }

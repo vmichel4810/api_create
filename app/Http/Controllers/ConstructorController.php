@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//resources
 use App\Http\Resources\ConstructorResource;
+use App\Http\Resources\ConstructorCollection;
+//models
 use App\Models\Constructor;
+//illuminate
 use Illuminate\Http\Request;
-
 use Illuminate\Http\Client\Response;
 
 
@@ -14,7 +16,7 @@ class ConstructorController extends Controller
 
     public function index()
     {
-        return Response(Constructor::all());
+        return new ConstructorCollection(Constructor::paginate(15));
     }
 
 

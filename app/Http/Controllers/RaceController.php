@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//resources
+use App\Http\Resources\RaceCollection;
 use App\Http\Resources\RaceResource;
-
+//models
 use App\Models\Race;
+//Illuminate
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 
@@ -17,7 +19,7 @@ class RaceController extends Controller
      */
     public function index()
     {
-        return Response(Race::all());
+        return new RaceCollection(Race::paginate(15));
     }
 
     /**

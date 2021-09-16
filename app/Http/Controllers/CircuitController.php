@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//resources
 use App\Http\Resources\CircuitResource;
-
+use App\Http\Resources\CircuitCollection;
+//model
 use App\Models\Circuit;
+//illuminate
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 
@@ -13,7 +15,7 @@ class CircuitController extends Controller
 
     public function index()
     {
-        return Response(Circuit::all());
+        return new CircuitCollection(Circuit::paginate(15));
     }
 
 
@@ -21,7 +23,7 @@ class CircuitController extends Controller
     {
         $circuit = new Circuit();
         $circuit->createCircuit($request->all());
-        return response()->json($circuit, 281);
+        return response()->json($circuit, 201);
     }
 
     public function show($circuit)

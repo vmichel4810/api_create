@@ -30,10 +30,10 @@ class CreateResultsTable extends Migration
             $table->integer('laps')->default(0);
             $table->string('time')->nullable();
             $table->integer('milliseconds')->nullable();
-            $table->integer('fastesLap')->nullable();
+            $table->integer('fastestLap')->nullable();
             $table->integer('rank')->nullable()->default(0);
-            $table->string('fastesLapTime')->nullable();
-            $table->string('fastesLapSpeed')->nullable();
+            $table->string('fastestLapTime')->nullable();
+            $table->string('fastestLapSpeed')->nullable();
             $table->string("statusId")->default(0);
 
             $table->timestamps();

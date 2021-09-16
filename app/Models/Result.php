@@ -33,4 +33,19 @@ class Result extends Model
         $this->fastestLapSpeed = $data['fastestLapSpeed'];
         $this->statusId = $data['statusId'];
     }
+
+    public function Race($data){
+
+        return $this->belongsTo(Race::class);
+    }
+
+    public function Driver($data){
+        
+        return $this->belongsTo(Driver::class);
+    }
+
+    public function Constructor($data){
+
+        return $this->belongsTo(Constructor::class);
+    }
 }

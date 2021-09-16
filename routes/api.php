@@ -1,18 +1,15 @@
 <?php
 
-use App\Http\Controllers\ConstructorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+// use Controller
+use App\Http\Controllers\CircuitController;
+use App\Http\Controllers\ConstructorController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\RaceController;
-use App\Http\Resources\RaceCollection;
-use App\Http\Resources\ConstructorCollection;
-use App\Http\Resources\DriverCollection;
-use App\Http\Resources\DriverResource;
-use App\Http\Resources\CircuitCollection;
+use App\Http\Controllers\ResultController;
 
-use App\Models\Driver;
-use App\Models\Race;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,22 +28,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //route URI
 Route::apiResources([
+    'circuits' => CircuitController::class,
+    'constructors' => ConstructorController::class,
     'drivers' => DriverController::class,
     'races' => RaceController::class,
-    'constructors' => ConstructorController::class,
     'results' => ResultController::class,
-    'circuits' => CircuitController::class,
 ]);
-
-//pagination
-
-Route::get('/drivers', function (){
-    return new DriverCollection(Driver::paginate(5));
-});
-Route::get('/circuits', function (){
-    return new CircuitCollection(Circuit::paginate(5));
-});
-
 
 // authentification
 Route::post('/tokens/create', function (Request $request) {
