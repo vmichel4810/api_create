@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//resources
+use App\Http\Resources\RaceCollection;
+use App\Http\Resources\RaceResource;
+//models
 use App\Models\Race;
+//Illuminate
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 
@@ -15,7 +19,7 @@ class RaceController extends Controller
      */
     public function index()
     {
-        return Response(Race::all());
+        return new RaceCollection(Race::paginate(15));
     }
 
     /**
@@ -28,7 +32,7 @@ class RaceController extends Controller
     {
         $race = new Race();
         $race->createRace($request->all());
-        return response()->json($race, 281);
+        return response()->json($race, 201);
     }
     /**
      * Display the specified resource.
@@ -44,7 +48,7 @@ class RaceController extends Controller
         return response()->json('race at not found', 404);
 
         $race = new Race();
-        $race->FindOrFail($id);
+        $race->FindOrFail($race);
 
         return Response($race);
     }
@@ -59,7 +63,7 @@ class RaceController extends Controller
     public function update($request, $race) {
         $race->updateRace($race->all());
 
-        return response()->json($race, 281);
+        return response()->json($race, 201);
     }
 
     /**

@@ -22,5 +22,21 @@ class Race extends Model
         $this->date = $data['date'];
         $this->time = $data['time'];
         $this->url = $data['url'];
+        $this->save();
+    }
+
+    public function updateRace($data){
+        $this->raceId = $data['raceId'];
+        $this->save();
+    }
+
+    public function circuit($data){
+
+        return $this->belongsto(Circuit::class);
+    }
+
+    public function results($data){
+
+        return $this->hasMany(Result::class);
     }
 }

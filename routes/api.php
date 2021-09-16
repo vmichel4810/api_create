@@ -1,11 +1,16 @@
 <?php
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\UserController;
 
+// use Controller
+use App\Http\Controllers\CircuitController;
+use App\Http\Controllers\ConstructorController;
+
+use App\Http\Controllers\RaceController;
+use App\Http\Controllers\ResultController;
 
 
 /*
@@ -23,10 +28,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//route URI
 Route::apiResources([
-    'drivers' => DriverController::class,
     'circuits' => CircuitController::class,
     'constructors' => ConstructorController::class,
+    'drivers' => DriverController::class,
+    'races' => RaceController::class,
+    'results' => ResultController::class,
 ]);
 
 Route::post('/register',[AuthController::class,'register']);

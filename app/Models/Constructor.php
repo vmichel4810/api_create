@@ -27,4 +27,9 @@ class Constructor extends Model
         $this->constructorRef = $data['constructorRef'];
         $this->save();
     }
+
+    public function results($data) {
+        
+        return $this->hasMany(Result::class); 
+    }
 }

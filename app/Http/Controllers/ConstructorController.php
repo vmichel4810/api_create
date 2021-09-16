@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//resources
 use App\Http\Resources\ConstructorResource;
+use App\Http\Resources\ConstructorCollection;
+//models
 use App\Models\Constructor;
+//illuminate
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +28,7 @@ class ConstructorController extends Controller
     {
         $constructor = new Constructor();
         $constructor->createConstructor($request->all());
-        return response()->json($constructor, 281);
+        return response()->json($constructor, 201);
     }
 
 
@@ -48,7 +51,7 @@ class ConstructorController extends Controller
     {
         $constructor->updateConstructor($constructor->all());
 
-        return response()->json($constructor, 281);
+        return response()->json($constructor, 201);
     }
 
     public function destroy($constructor)

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//resources
 use App\Http\Resources\DriverResource;
-
+use App\Http\Resources\DriverCollection;
+//models
 use App\Models\Driver;
+//illuminate
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +17,7 @@ class DriverController extends Controller
 {
     public function index()
     {
-        $driver = DB::table('driver')->paginate(15);
-
-        return view('driver.index', ['driver' => $driver]);
-        return Response(Driver::all());
+        return new DriverCollection(Driver::paginate(15));
     }
 
     public function show($driver)
@@ -39,13 +38,13 @@ class DriverController extends Controller
     {
         $driver = new Driver();
         $driver->createDriver($request->all());
-        return response()->json($driver, 281);
+        return response()->json($driver, 201);
     }
 
     public function update($request, $driver) {
         $driver->updateDriver($driver->all());
 
-        return response()->json($driver, 281);
+        return response()->json($driver, 201);
     }
 
     public function destroy($driver) {
