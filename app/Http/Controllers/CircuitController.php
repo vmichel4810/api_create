@@ -7,12 +7,18 @@ use App\Http\Resources\CircuitResource;
 use App\Models\Circuit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\DB;
 
 class CircuitController extends Controller
 {
 
     public function index()
     {
+        $circuit = DB::table('circuit')->paginate(15);
+        //$circuit = DB::table('circuit')->where('name', 100)->get();
+        //$circuit->query('name', 'location', 'contry');
+
+        return view('circuit.index', ['driver' => $circuit]);
         return Response(Circuit::all());
     }
 
@@ -51,5 +57,11 @@ class CircuitController extends Controller
     {
         $circuit->delete();
         return response()->json('Driver deleted', 204);
+    }
+
+    function search($surname) {
+
+        $query = Circuit::query();
+        return Circuit::where("name", $surname)->get();
     }
 }

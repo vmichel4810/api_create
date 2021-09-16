@@ -20,4 +20,7 @@ class CircuitResource extends JsonResource
 
         ];
     }
+
+
+
 }

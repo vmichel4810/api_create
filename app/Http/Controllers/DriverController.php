@@ -7,6 +7,8 @@ use App\Http\Resources\DriverResource;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\DB;
+
 
 
 class DriverController extends Controller
