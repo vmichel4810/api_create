@@ -14,6 +14,10 @@ class CircuitResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'name' =>$this->name,
+            'location' => $this->name . ' ' . $this->location,
+
+        ];
     }
 }

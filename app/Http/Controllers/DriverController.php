@@ -13,6 +13,9 @@ class DriverController extends Controller
 {
     public function index()
     {
+        $driver = DB::table('driver')->paginate(15);
+
+        return view('driver.index', ['driver' => $driver]);
         return Response(Driver::all());
     }
 
