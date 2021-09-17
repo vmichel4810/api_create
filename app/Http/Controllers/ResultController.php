@@ -27,7 +27,7 @@ class ResultController extends Controller
     }
 
 
-    public function show($result)
+    public function show($id)
     {
         $result = Result::find($id);
         if($result) {

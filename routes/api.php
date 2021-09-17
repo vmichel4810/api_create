@@ -40,9 +40,10 @@ Route::apiResources([
 Route::post('/register',[AuthController::class,'register']);
 
 Route::get("circuits/search/{circuitRef}", [CircuitController::class, 'search']);
+Route::get("constructors/search/{constructorRef}", [ConstructorController::class, 'search']);
+
 
 Route::post("login",[UserController::class,'index']);
 
-// Route::post("save-circuit",[CircuitController::class, 'validateData']);
-// Route::post("save-constructor",[ConstructorController::class, 'validateData']);
+
 Route::post("filter",[CircuitController::class, 'filterData']);

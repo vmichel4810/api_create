@@ -11,6 +11,7 @@ use App\Models\Circuit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Isset_;
 
 class CircuitController extends Controller
 {
@@ -74,15 +75,8 @@ class CircuitController extends Controller
     }
 
     function search($data) {
-
-        // $query = Circuit::query($data);
-        // $result = Circuit::where("circuitRef")->get($query);
-        // if($result) {
-        //     return Response()->json($result);
-        // } else {
-        //     return response()->json('No Data not found', 404);
-        // }
-            return Circuit::where('circuitRef', "like",'%'. $data . '%')->get();
+        
+        return Circuit::where("circuitRef", 'like', '%' . $data . '%')->get();
 
     }
 
@@ -121,4 +115,4 @@ class CircuitController extends Controller
 //         return $query;
 //     }
 
-// }
+}
