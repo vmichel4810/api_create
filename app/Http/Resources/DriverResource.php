@@ -17,7 +17,7 @@ class DriverResource extends JsonResource
         return [
             'birthdate' =>$this->dob,
             'fullname' => $this->forename . ' ' . $this->surname,
-
+            'Data of birth' =>$this->dob,
         ];
     }
 }

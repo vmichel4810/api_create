@@ -10,13 +10,17 @@ use App\Models\Constructor;
 //illuminate
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Client\Response;
 
 
 class ConstructorController extends Controller
 {
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return Response(Constructor::all());
@@ -24,20 +28,39 @@ class ConstructorController extends Controller
         $constructor->query('name', 'nationality');
     }
 
-
-    public function store(Request $request)
-    {
-        $constructor = new Constructor();
-        $constructor->createConstructor($request->all());
-        return response()->json($constructor, 201);
-    }
-
-
-    function search($constructorRef) {
-
-        return Constructor::where("constructorRef", 'like', '%' . $constructorRef . '%')->get();
-
-    }
+    /**
+    * @OA\Get(
+    * path="/api/Constructors",
+    * operationId="getAllConstructor",
+    * description="Return all Constructor with their informations.",
+    * tags={"Constructors"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
 
 
     public function show($id)
@@ -54,6 +77,50 @@ class ConstructorController extends Controller
 
         return Response($constructor);
     }
+   
+
+    /**
+    * @OA\Get(
+    * path="/api/constructors/{constructor}",
+    * operationId="getAllConstructor",
+    * description="Return constructor by ID.",
+    * tags={"Constructors"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+
+
+
+    function search($constructorRef) {
+
+        return Constructor::where("constructorRef", 'like', '%' . $constructorRef . '%')->get();
+
+    }
+
 
 
     public function update(Request $request,constructor $constructor)
@@ -63,31 +130,121 @@ class ConstructorController extends Controller
         return response()->json($constructor, 201);
     }
 
+
+    /**
+    * @OA\Post(
+    * path="/api/constructors/",
+    * operationId="CreateConstructor",
+    * description="Create new constructor.",
+    * tags={"Constructors"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+ 
+
+    /**
+    * @OA\Patch(
+    * path="/api/constructors/{constructor}",
+    * operationId="UpdateConstructor",
+    * description="Update constructor by Id.",
+    * tags={"Constructors"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Constructor  $constructor
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Constructor $constructor)
     {
         $constructor->delete();
         return response()->json('', 204);
     }
 
-    public function validateData(Request $request) {
-        $rules=array(
-            "constructorRef"=>"required|min:2|max:4",
-            "name"=>"required",
-        );
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()) {
-            return response()->json($validator->errors(), 401);
-        }
-        else {
-            $constructor = new Constructor;
-            $constructor->constructorRef=$request->constructorRef;
-            $constructor->name=$request->name;
-            $result=$constructor->save();
-            if($result) {
-                return ["Result"=>"Data has been saved"];
-            } else {
-                return ["Result"=>"Operation failed"];
-            }
-        }
-    }
+    /**
+    * @OA\Delete(
+    * path="/api/constructors/{constructor}",
+    * operationId="UpdateConstructor",
+    * description="Update constructor by Id.",
+    * tags={"Constructors"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
 }

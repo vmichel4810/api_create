@@ -9,11 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 class Driver extends Model
 {
     use HasFactory;
-
+    
     protected $primaryKey = 'driverId';
-
+    
+    protected $allowedSortParameters = [
+        'dob',
+    ];
+    
+    
     protected $hidden = ['created_at', 'update_at'];
-
+    
     public function createDriver($data) {
         $this->driverRef = $data['driverRef'];
         $this->forename = $data['forename'];
@@ -21,7 +26,7 @@ class Driver extends Model
         $this->url = $data['url'];
         $this->save();
     }
-
+    
     public function updateDriver($data) {
         $this->driverRef = $data['driverRef'];
         $this->save();

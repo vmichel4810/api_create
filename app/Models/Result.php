@@ -34,7 +34,6 @@ class Result extends Model
         $this->statusId = $data['statusId'];
         $this->save();
     }
-
     public function updateResult($data){
         $this->grid = $data['grid'];
         $this->save();
