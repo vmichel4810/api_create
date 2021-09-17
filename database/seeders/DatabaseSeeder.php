@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
         $this->call([
             DriverSeeder::class,
@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CircuitSeeder::class,
             RaceSeeder::class,
             ResultSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 //resources
 use App\Http\Resources\CircuitResource;
 use App\Http\Resources\CircuitCollection;
+use Validator;
 //model
 use App\Models\Circuit;
 //illuminate
@@ -65,5 +66,37 @@ class CircuitController extends Controller
 
         $query = Circuit::query();
         return Circuit::where("name", $surname)->get();
+    }
+
+    function validateData(Request $request) {
+        $rules=array(
+            "name"=>"required|min:2|max:4",
+            "circuitRef"=>"required",
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 401);
+        }
+        else {
+            $circuit = new Circuit;
+            $circuit->name=$request->name;
+            $circuit->circuitRef=$request->circuitRef;
+            $result=$circuit->save();
+            if($result) {
+                return ["Result"=>"Data has been saved"];
+            } else {
+                return ["Result"=>"Operation failed"];
+            }
+        }
+    }
+
+    function filterData(Request $request) {
+        $circuit = collect([1, 2, 3, 4]);
+
+        $filtered = $circuit->filter(function ($circuit, $key) {
+            return $circuit > 2;
+        });
+
+        $filtered->all();
     }
 }

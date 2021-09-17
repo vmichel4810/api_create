@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 //resources
 use App\Http\Resources\ConstructorResource;
 use App\Http\Resources\ConstructorCollection;
+use Validator;
 //models
 use App\Models\Constructor;
 //illuminate
@@ -58,5 +59,27 @@ class ConstructorController extends Controller
     {
         $constructor->delete();
         return response()->json('Driver deleted', 204);
+    }
+
+    function validateData(Request $request) {
+        $rules=array(
+            "constructorRef"=>"required|min:2|max:4",
+            "name"=>"required",
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 401);
+        }
+        else {
+            $constructor = new Constructor;
+            $constructor->constructorRef=$request->constructorRef;
+            $constructor->name=$request->name;
+            $result=$constructor->save();
+            if($result) {
+                return ["Result"=>"Data has been saved"];
+            } else {
+                return ["Result"=>"Operation failed"];
+            }
+        }
     }
 }
