@@ -26,7 +26,6 @@ class CircuitController extends Controller
         $rules=array(
             "circuitRef"=>"required|min:4|max:20",
             "name"=>"required|min:4|max:20",
-            "location" =>"required|"
         );
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()) {
@@ -79,28 +78,6 @@ class CircuitController extends Controller
         $query = Circuit::query();
         return Circuit::where("name", $surname)->get();
     }
-
-    // public function validateData(Request $request) {
-    //     $rules=array(
-    //         "circuitRef"=>"required",
-    //         "name"=>"required|min:2|max:4",
-    //     );
-    //     $validator = Validator::make($request->all(), $rules);
-    //     if($validator->fails()) {
-    //         return response()->json($validator->errors(), 400);
-    //     }
-    //     else {
-    //         $circuit = new Circuit;
-    //         $circuit->name=$request->name;
-    //         $circuit->circuitRef=$request->circuitRef;
-    //         $result=$circuit->save();
-    //         if($result) {
-    //             return ["Result"=>"Data has been saved"];
-    //         } else {
-    //             return ["Result"=>"Operation failed"];
-    //         }
-    //     }
-    // }
 
     function filterData(Request $request) {
         $circuit = collect([1, 2, 3, 4]);
