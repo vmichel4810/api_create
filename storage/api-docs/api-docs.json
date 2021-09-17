@@ -1,0 +1,651 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "FormalAP1",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/circuits": {
+            "get": {
+                "tags": [
+                    "Circuits"
+                ],
+                "description": "Return all circuit with their informations.",
+                "operationId": "getAllCircuit",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/circuits/{circuit}": {
+            "get": {
+                "tags": [
+                    "Circuits"
+                ],
+                "description": "Return circuit by ID.",
+                "operationId": "getAllCircuit",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Circuits"
+                ],
+                "description": "Update circuit by Id.",
+                "operationId": "UpdateCircuit",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Circuits"
+                ],
+                "description": "Update circuit by Id.",
+                "operationId": "UpdateCircuit",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/circuits/": {
+            "post": {
+                "tags": [
+                    "Circuits"
+                ],
+                "description": "Create new circuit.",
+                "operationId": "CreateCircuit",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/Constructors": {
+            "get": {
+                "tags": [
+                    "Constructors"
+                ],
+                "description": "Return all Constructor with their informations.",
+                "operationId": "getAllConstructor",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/constructors/{constructor}": {
+            "get": {
+                "tags": [
+                    "Constructors"
+                ],
+                "description": "Return constructor by ID.",
+                "operationId": "getAllConstructor",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Constructors"
+                ],
+                "description": "Update constructor by Id.",
+                "operationId": "UpdateConstructor",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Constructors"
+                ],
+                "description": "Update constructor by Id.",
+                "operationId": "UpdateConstructor",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/constructors/": {
+            "post": {
+                "tags": [
+                    "Constructors"
+                ],
+                "description": "Create new constructor.",
+                "operationId": "CreateConstructor",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/drivers": {
+            "get": {
+                "tags": [
+                    "Drivers"
+                ],
+                "description": "Return all driver with their informations.",
+                "operationId": "getAllDriver",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/drivers/{driver}": {
+            "get": {
+                "tags": [
+                    "Drivers"
+                ],
+                "description": "Return driver by ID.",
+                "operationId": "getAllDriver",
+                "parameters": [
+                    {
+                        "$ref": "driver"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Drivers"
+                ],
+                "description": "Update driver by Id.",
+                "operationId": "UpdateDriver",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Drivers"
+                ],
+                "description": "Update driver by Id.",
+                "operationId": "UpdateDriver",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/drivers/": {
+            "post": {
+                "tags": [
+                    "Drivers"
+                ],
+                "description": "Create new driver.",
+                "operationId": "CreateDriver",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/races": {
+            "get": {
+                "tags": [
+                    "Races"
+                ],
+                "description": "Return all Race with their informations.",
+                "operationId": "getAllRace",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/races/{race}": {
+            "get": {
+                "tags": [
+                    "Races"
+                ],
+                "description": "Return race by ID.",
+                "operationId": "getAllrace",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Races"
+                ],
+                "description": "Update race by Id.",
+                "operationId": "Updaterace",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Races"
+                ],
+                "description": "Update race by Id.",
+                "operationId": "Updaterace",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/races/": {
+            "post": {
+                "tags": [
+                    "Races"
+                ],
+                "description": "Create new Race.",
+                "operationId": "CreateRace",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/results": {
+            "get": {
+                "tags": [
+                    "Results"
+                ],
+                "description": "Return all result with their informations.",
+                "operationId": "getAllresult",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/results/{result}": {
+            "get": {
+                "tags": [
+                    "Results"
+                ],
+                "description": "Return result by ID.",
+                "operationId": "getAllresult",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Results"
+                ],
+                "description": "Update result by Id.",
+                "operationId": "UpdateResult",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Results"
+                ],
+                "description": "Update result by Id.",
+                "operationId": "UpdateResult",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/results/": {
+            "post": {
+                "tags": [
+                    "Results"
+                ],
+                "description": "Create new result.",
+                "operationId": "Createresult",
+                "responses": {
+                    "200": {
+                        "description": "Opération réussi"
+                    },
+                    "401": {
+                        "description": "Non authentifié"
+                    },
+                    "403": {
+                        "description": "Interdit"
+                    },
+                    "400": {
+                        "description": "Mauvaise requête"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "constants": {
+                "L5_SWAGGER_CONST_HOST": "http://127.0.0.1:8000/api"
+            }
+        }
+    ]
+}

@@ -8,31 +8,118 @@ use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 
-
 class DriverController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $driver = DB::table('driver')->paginate(15);
-
-        return view('driver.index', ['driver' => $driver]);
         return Response(Driver::all());
     }
 
-    public function show($driver)
+    /**
+    * @OA\Get(
+    * path="/api/drivers",
+    * operationId="getAllDriver",
+    * description="Return all driver with their informations.",
+    * tags={"Drivers"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        if($driver) {
+        $driver = Driver::find($id);
+        if ($driver) {
             return new DriverResource($driver);
-        }
-
-        return response()->json('driver at not found', 404);
-
-        $driver = new Driver();
-        $driver->FindOrFail($driver);
-
-        return Response($driver);
+        } 
+        return response()->json('merde', 404);
     }
 
+    /**
+    * @OA\Get(
+    * path="/api/drivers/{driver}",
+    * operationId="getAllDriver",
+    * description="Return driver by ID.",
+    * tags={"Drivers"},
+    *  @OA\Parameter(
+    *      name="driver",
+    *      description="enter ID",    
+    *      ref="driver",
+    *      in="path",
+    *      required=true,
+    *      @OA\Schema(
+    *           type="integer"
+    *      )
+    * ),
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $driver = new Driver();
@@ -40,15 +127,132 @@ class DriverController extends Controller
         return response()->json($driver, 201);
     }
 
-    public function update($request, $driver) {
-        $driver->updateDriver($driver->all());
+    /**
+    * @OA\Post(
+    * path="/api/drivers/",
+    * operationId="CreateDriver",
+    * description="Create new driver.",
+    * tags={"Drivers"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
 
-        return response()->json($driver, 201);
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Driver  $driver
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Driver $driver)
+    {
+        $driver->updateDriver($request->all());
+
+        return response()->json($driver, 200);
     }
 
-    public function destroy($driver) {
+    /**
+    * @OA\Patch(
+    * path="/api/drivers/{driver}",
+    * operationId="UpdateDriver",
+    * description="Update driver by Id.",
+    * tags={"Drivers"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Driver  $driver
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Driver $driver)
+    {
         $driver->delete();
-        return response()->json('Driver deleted', 204);
+        return response()->json('', 204);
     }
 
+    /**
+    * @OA\Delete(
+    * path="/api/drivers/{driver}",
+    * operationId="UpdateDriver",
+    * description="Update driver by Id.",
+    * tags={"Drivers"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
 }

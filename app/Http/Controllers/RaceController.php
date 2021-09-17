@@ -21,6 +21,89 @@ class RaceController extends Controller
     }
 
     /**
+    * @OA\Get(
+    * path="/api/races",
+    * operationId="getAllRace",
+    * description="Return all Race with their informations.",
+    * tags={"Races"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\races  $races
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $race = Race::find($id);
+        if($race) {
+            return new RaceResource($race);
+        }
+        return response()->json('race at not found', 404);
+    }
+
+    /**
+    * @OA\Get(
+    * path="/api/races/{race}",
+    * operationId="getAllrace",
+    * description="Return race by ID.",
+    * tags={"Races"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
+
+ /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -32,24 +115,41 @@ class RaceController extends Controller
         $race->createRace($request->all());
         return response()->json($race, 201);
     }
+
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\races  $races
-     * @return \Illuminate\Http\Response
-     */
-    public function show($race)
-    {
-        if($race) {
-            return new RaceResource($race);
-        }
-        return response()->json('race at not found', 404);
+    * @OA\Post(
+    * path="/api/races/",
+    * operationId="CreateRace",
+    * description="Create new Race.",
+    * tags={"Races"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
 
-        $race = new Race();
-        $race->FindOrFail($race);
-
-        return Response($race);
-    }
 
     /**
      * Update the specified resource in storage.
@@ -58,11 +158,46 @@ class RaceController extends Controller
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $race) {
+    public function update(Request $request,Race $race) 
+    {
         $race->updateRace($race->all());
 
         return response()->json($race, 201);
     }
+
+    /**
+    * @OA\Patch(
+    * path="/api/races/{race}",
+    * operationId="Updaterace",
+    * description="Update race by Id.",
+    * tags={"Races"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
 
     /**
      * Remove the specified resource from storage.
@@ -70,8 +205,43 @@ class RaceController extends Controller
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function destroy($race) {
+    public function destroy(Race $race) 
+    {
         $race->delete();
         return response()->json('Race deleted', 204);
     }
+
+    /**
+    * @OA\Delete(
+    * path="/api/races/{race}",
+    * operationId="Updaterace",
+    * description="Update race by Id.",
+    * tags={"Races"},
+    *
+    * @OA\Response(
+    * response=200,
+    * description="Opération réussi",
+    * ),
+    *
+    * @OA\Response(
+    * response=401,
+    * description="Non authentifié",
+    * ),
+    * 
+    * @OA\Response(
+    * response=403,
+    * description="Interdit"
+    * ),
+    *
+    * @OA\Response(
+    * response=400,
+    * description="Mauvaise requête"
+    * ),
+    *
+    * @OA\Response(
+    * response=404,
+    * description="Non trouvé"
+    * ),
+    * )
+    */
 }
