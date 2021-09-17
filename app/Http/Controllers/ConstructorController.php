@@ -33,6 +33,13 @@ class ConstructorController extends Controller
     }
 
 
+    function search($constructorRef) {
+
+        return Constructor::where("constructorRef", 'like', '%' . $constructorRef . '%')->get();
+
+    }
+
+
     public function show($id)
     {
         $constructor = Constructor::find($id);

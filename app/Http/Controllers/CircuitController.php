@@ -74,15 +74,10 @@ class CircuitController extends Controller
         return response()->json('Driver deleted', 204);
     }
 
-    function search($data) {
+    function search($circuitRef) {
 
-        $query = Circuit::query();
-        $result = Circuit::where("circuitRef")->get();
-        if($result) {
-            return Response()->json($result);
-        } else {
-            return response()->json('No Data not found', 404);
-        }
+            return Circuit::where("circuitRef", 'like', '%' . $circuitRef . '%')->get();
+
     }
 
     function validateData(Request $request) {
@@ -106,29 +101,6 @@ class CircuitController extends Controller
             }
         }
     }
-    public function searchFilters($request){
-        $query = Circuit::query();
-        if($request->has('circuitId')){
-            $query = $query->where('title','like','%'.$request->name.'%');
-        }
-        if($request->has('circuitRef')){
-            $query = $query->where('negotiable',$request->circuitRef);
-        }
-        if($request->has('name')){
-            $query = $query->whereIn('name',$request->name);
-        }
-        if($request->has('location')){
-            $query = $query->whereIn('location',$request->location);
-        }
-        if($request->has('country')){
-            $query = $query->whereIn('country',$request->country);
-        }
-        if($request->has('lat')){
-            $query = $query->whereHas('jobLanguageIds',function ($q) use($request){
-                $q->select('languages.id','languages.name')->where('languages.name',$request->language_name);
-            });
-        }
-        return $query;
-    }
+    
 
 }
