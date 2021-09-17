@@ -62,7 +62,7 @@ class ConstructorController extends Controller
         return response()->json('', 204);
     }
 
-    function validateData(Request $request) {
+    public function validateData(Request $request) {
         $rules=array(
             "constructorRef"=>"required|min:2|max:4",
             "name"=>"required",

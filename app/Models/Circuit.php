@@ -14,12 +14,7 @@ class Circuit extends Model
 
     protected $hidden = ['created_at', 'update_at'];
 
-<<<<<<< HEAD
-    public function createCircuit($data) {
-        $this->circuitRef = $data['circuitRef'];
-        $this->forename = $data['forename'];
-        $this->surname = $data['surname'];
-=======
+
     public function createCircuit($data){
         $this->circuitRef = $data['circuitRef'];
         $this->name = $data['name'];
@@ -28,19 +23,13 @@ class Circuit extends Model
         $this->lat = $data['lat'];
         $this->lng = $data['lng'];
         $this->alt = $data['alt'];
->>>>>>> d49919d2e9741a581200a78b511d61d2a33af012
         $this->url = $data['url'];
         $this->save();
     }
 
-<<<<<<< HEAD
-    public function updateDriver($data) {
-        $this->circuitRef = $data['circuitRef'];
-        $this->save();
-    }
-=======
     public function updateCircuit($data){
         $this->circuitRef = $data['circuitRef'];
+        $this->name = $data['name'];
         $this->save();
     }
 
@@ -49,5 +38,4 @@ class Circuit extends Model
         // return $this->belongsTo(Race::class);
 
     }
->>>>>>> d49919d2e9741a581200a78b511d61d2a33af012
 }

@@ -43,6 +43,6 @@ Route::get("search/{surname}", [CircuitController::class, 'search']);
 
 Route::post("login",[UserController::class,'index']);
 
-Route::post("save-circuit",[CircuitController::class, 'validateData']);
-Route::post("save-constructor",[ConstructorController::class, 'validateData']);
+// Route::post("save-circuit",[CircuitController::class, 'validateData']);
+// Route::post("save-constructor",[ConstructorController::class, 'validateData']);
 Route::post("filter",[CircuitController::class, 'filterData']);

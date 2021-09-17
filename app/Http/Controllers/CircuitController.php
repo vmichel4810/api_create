@@ -14,23 +14,28 @@ use Illuminate\Support\Facades\DB;
 
 class CircuitController extends Controller
 {
-
+    
     public function index()
     {
-        $circuit = DB::table('circuit')->paginate(15);
-        //$circuit = DB::table('circuit')->where('name', 100)->get();
-        //$circuit->query('name', 'location', 'contry');
-
-        return view('circuit.index', ['driver' => $circuit]);
-        return Response(Circuit::all());
+        return new CircuitCollection(Circuit::paginate(15));
     }
 
 
     public function store(Request $request)
     {
-        $circuit = new Circuit();
-        $circuit->createCircuit($request->all());
-        return response()->json($circuit, 201);
+        $rules=array(
+            "circuitRef"=>"required|min:4|max:20",
+            "name"=>"required|min:4|max:20",
+            "location" =>"required|"
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }else{
+            $circuit = new Circuit();
+            $circuit->createCircuit($request->all());
+            return response()->json($circuit, 201);
+        }
     }
 
     public function show($id)
@@ -46,10 +51,20 @@ class CircuitController extends Controller
 
 
     public function update(Request $request, circuit $circuit)
-    {
-        $circuit->updateCircuit($request->all());
+    {   
+        $rules=array(
+            "circuitRef"=>"required|min:4|max:20",
+            "name"=>"required|min:4|max:20",
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }else{
 
-        return response()->json($circuit, 200);
+            $circuit->updateCircuit($request->all());
+            
+            return response()->json($circuit, 200);
+        }
     }
 
 
@@ -65,27 +80,27 @@ class CircuitController extends Controller
         return Circuit::where("name", $surname)->get();
     }
 
-    function validateData(Request $request) {
-        $rules=array(
-            "name"=>"required|min:2|max:4",
-            "circuitRef"=>"required",
-        );
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()) {
-            return response()->json($validator->errors(), 401);
-        }
-        else {
-            $circuit = new Circuit;
-            $circuit->name=$request->name;
-            $circuit->circuitRef=$request->circuitRef;
-            $result=$circuit->save();
-            if($result) {
-                return ["Result"=>"Data has been saved"];
-            } else {
-                return ["Result"=>"Operation failed"];
-            }
-        }
-    }
+    // public function validateData(Request $request) {
+    //     $rules=array(
+    //         "circuitRef"=>"required",
+    //         "name"=>"required|min:2|max:4",
+    //     );
+    //     $validator = Validator::make($request->all(), $rules);
+    //     if($validator->fails()) {
+    //         return response()->json($validator->errors(), 400);
+    //     }
+    //     else {
+    //         $circuit = new Circuit;
+    //         $circuit->name=$request->name;
+    //         $circuit->circuitRef=$request->circuitRef;
+    //         $result=$circuit->save();
+    //         if($result) {
+    //             return ["Result"=>"Data has been saved"];
+    //         } else {
+    //             return ["Result"=>"Operation failed"];
+    //         }
+    //     }
+    // }
 
     function filterData(Request $request) {
         $circuit = collect([1, 2, 3, 4]);
