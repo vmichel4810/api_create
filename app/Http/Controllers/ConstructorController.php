@@ -69,6 +69,17 @@ class ConstructorController extends Controller
         return response()->json('', 204);
     }
 
+    function filter($query, Constructor $filters)
+    {
+        if ($constructorId = $filters->get('constructorId')) {
+            return $query->where('constructorId', 'like', "{$constructorId}%");
+        }
+
+        if ($constructorRef = $filters->get('constructorRef')) {
+           return $query->whereIn('constructorRef', $constructorRef);
+        }
+    }
+
     public function validateData(Request $request) {
         $rules=array(
             "constructorRef"=>"required|min:2|max:4",
