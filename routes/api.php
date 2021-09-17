@@ -40,6 +40,7 @@ Route::post('/register',[AuthController::class,'register']);
 
 Route::get("circuits/search/{circuitRef}", [CircuitController::class, 'search']);
 Route::get("constructors/search/{constructorRef}", [ConstructorController::class, 'search']);
+Route::get("constructors/filter/{constructorRef}", [ConstructorController::class, 'filter']);
 
 
 Route::post("login",[UserController::class,'index']);

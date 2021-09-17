@@ -248,3 +248,13 @@ class ConstructorController extends Controller
     * )
     */
 }
+    function filter($query, Constructor $filters)
+    {
+        if ($constructorId = $filters->get('constructorId')) {
+            return $query->where('constructorId', 'like', "{$constructorId}%");
+        }
+
+        if ($constructorRef = $filters->get('constructorRef')) {
+           return $query->whereIn('constructorRef', $constructorRef);
+        }
+}
