@@ -11,6 +11,7 @@ use App\Models\Circuit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Isset_;
 
 class CircuitController extends Controller
 {
@@ -123,7 +124,6 @@ class CircuitController extends Controller
         $rules=array(
             "circuitRef"=>"required|min:4|max:20",
             "name"=>"required|min:4|max:20",
-            "location" =>"required|"
         );
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()) {
@@ -236,13 +236,56 @@ class CircuitController extends Controller
         return response()->json('', 204);
     }
 
+<<<<<<< HEAD
 
     function search($data) {
+=======
+    function search($data) {
+        
+        return Circuit::where("circuitRef", 'like', '%' . $data . '%')->get();
+>>>>>>> 149f258720f357635c455a7ba6a57f545dca0bfa
 
             return Circuit::where("circuitRef", 'like', '%' . $data . '%')->get();
 
+<<<<<<< HEAD
     }
     
+=======
+//     function filterData(Request $request) {
+//         $circuit = collect([1, 2, 3, 4]);
+
+//         $filtered = $circuit->filter(function ($circuit, $key) {
+//             return $circuit > 2;
+//         });
+
+//         $filtered->all();
+ 
+//     }
+//     public function searchFilters($request){
+//         $query = Circuit::query();
+//         if($request->has('circuitId')){
+//             $query = $query->where('title','like','%'.$request->name.'%');
+//         }
+//         if($request->has('circuitRef')){
+//             $query = $query->where('negotiable',$request->circuitRef);
+//         }
+//         if($request->has('name')){
+//             $query = $query->whereIn('name',$request->name);
+//         }
+//         if($request->has('location')){
+//             $query = $query->whereIn('location',$request->location);
+//         }
+//         if($request->has('country')){
+//             $query = $query->whereIn('country',$request->country);
+//         }
+//         if($request->has('lat')){
+//             $query = $query->whereHas('jobLanguageIds',function ($q) use($request){
+//                 $q->select('languages.id','languages.name')->where('languages.name',$request->language_name);
+//             });
+//         }
+//         return $query;
+//     }
+>>>>>>> 149f258720f357635c455a7ba6a57f545dca0bfa
 
 
     /**

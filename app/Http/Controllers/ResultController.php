@@ -60,7 +60,6 @@ class ResultController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-
     {
         $result = Result::find($id);
         if ($result) {

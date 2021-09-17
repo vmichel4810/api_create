@@ -46,3 +46,10 @@ Route::get("constructors/filter/{constructorRef}", [ConstructorController::class
 Route::post("login",[UserController::class,'index']);
 Route::post("filter",[CircuitController::class, 'filterData']);
 
+<<<<<<< HEAD
+=======
+
+
+Route::post("filter",[CircuitController::class, 'filterData']);
+
+>>>>>>> 149f258720f357635c455a7ba6a57f545dca0bfa
