@@ -41,8 +41,9 @@ class ResultController extends Controller
      * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function show($result)
+    public function show($id)
     {
+        $result = Result::find($id);
         if($result) {
             return new ResultResource($result);
         }
@@ -62,10 +63,10 @@ class ResultController extends Controller
      * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $result) {
-        $result->updateResult($result->all());
+    public function update(Request $request, Result $result) {
+        $result->updateResult($request->all());
 
-        return response()->json($result, 281);
+        return response()->json($result, 200);
     }
 
     /**
@@ -74,7 +75,7 @@ class ResultController extends Controller
      * @param  \App\Models\results  $results
      * @return \Illuminate\Http\Response
      */
-    public function destroy($result) {
+    public function destroy(Result $result) {
         $result->delete();
         return response()->json('Result deleted', 204);
     }

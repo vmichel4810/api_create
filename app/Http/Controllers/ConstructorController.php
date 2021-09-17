@@ -28,8 +28,9 @@ class ConstructorController extends Controller
     }
 
 
-    public function show($constructor)
+    public function show($id)
     {
+        $constructor = Constructor::find($id);
         if($constructor) {
             return new ConstructorResource($constructor);
         }
@@ -43,16 +44,16 @@ class ConstructorController extends Controller
     }
 
 
-    public function update(Request $request, $constructor)
+    public function update(Request $request,constructor $constructor)
     {
-        $constructor->updateConstructor($constructor->all());
+        $constructor->updateConstructor($request->all());
 
         return response()->json($constructor, 201);
     }
 
-    public function destroy($constructor)
+    public function destroy(Constructor $constructor)
     {
         $constructor->delete();
-        return response()->json('Driver deleted', 204);
+        return response()->json('', 204);
     }
 }

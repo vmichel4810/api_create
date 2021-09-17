@@ -40,17 +40,14 @@ class RaceController extends Controller
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function show($race)
+    public function show($id)
     {
+        $race = Race::find($id);
         if($race) {
             return new RaceResource($race);
         }
         return response()->json('race at not found', 404);
 
-        $race = new Race();
-        $race->FindOrFail($race);
-
-        return Response($race);
     }
 
     /**
@@ -60,8 +57,8 @@ class RaceController extends Controller
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $race) {
-        $race->updateRace($race->all());
+    public function update(Request $request, Race $race) {
+        $race->updateRace($request->all());
 
         return response()->json($race, 201);
     }
@@ -72,7 +69,7 @@ class RaceController extends Controller
      * @param  \App\Models\races  $races
      * @return \Illuminate\Http\Response
      */
-    public function destroy($race) {
+    public function destroy(Race $race) {
         $race->delete();
         return response()->json('Race deleted', 204);
     }

@@ -18,18 +18,15 @@ class DriverController extends Controller
         return new DriverCollection(Driver::paginate(15));
     }
 
-    public function show($driver)
+    public function show($id)
     {
+        $driver = Driver::find($id);
         if($driver) {
             return new DriverResource($driver);
         }
 
-        return response()->json('driver at not found', 404);
+        return response()->json('driver not found', 404);
 
-        $driver = new Driver();
-        $driver->FindOrFail($driver);
-
-        return Response($driver);
     }
 
     public function store(Request $request)
@@ -39,13 +36,14 @@ class DriverController extends Controller
         return response()->json($driver, 201);
     }
 
-    public function update($request, $driver) {
-        $driver->updateDriver($driver->all());
+    public function update(Request $request, Driver $driver) {
+        $driver->updateDriver($request->all());
 
-        return response()->json($driver, 201);
+        return response()->json($driver, 200);
     }
 
-    public function destroy($driver) {
+    public function destroy(Driver $driver) {
+        
         $driver->delete();
         return response()->json('Driver deleted', 204);
     }

@@ -9,14 +9,14 @@ class Result extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'driverId';
+    protected $primaryKey = 'resultId';
 
     protected $hidden = ['created_at', 'update_at'];
 
     public function createResult($data) {
-        $this->resultId = $data['resultId'];
+        // $this->resultId = $data['resultId'];
         $this->raceId = $data['raceId'];
-        $this->driverid = $data['driverid'];
+        $this->driverId = $data['driverId'];
         $this->constructorId = $data['constructorId'];
         $this->number = $data['number'];
         $this->grid = $data['grid'];
@@ -27,11 +27,17 @@ class Result extends Model
         $this->laps = $data['laps'];
         $this->time= $data['time'];
         $this->milliseconds= $data['milliseconds'];
-        $this->fastestLaps = $data['fastestLaps'];
+        $this->fastestLap = $data['fastestLap'];
         $this->rank = $data['rank'];
         $this->fastestLapTime = $data['fastestLapTime'];
         $this->fastestLapSpeed = $data['fastestLapSpeed'];
         $this->statusId = $data['statusId'];
+        $this->save();
+    }
+
+    public function updateResult($data){
+        $this->grid = $data['grid'];
+        $this->save();
     }
 
     public function Race($data){

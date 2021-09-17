@@ -14,7 +14,6 @@ class Race extends Model
     protected $hidden = ['created_at', 'update_at'];
 
     public function createRace($data) {
-        $this->raceId = $data['raceId'];
         $this->year = $data['year'];
         $this->round = $data['round'];
         $this->circuitId = $data['circuitId'];
@@ -26,7 +25,13 @@ class Race extends Model
     }
 
     public function updateRace($data){
-        $this->raceId = $data['raceId'];
+        $this->year = $data['year'];
+        $this->round = $data['round'];
+        $this->circuitId = $data['circuitId'];
+        $this->name = $data['name'];
+        $this->date = $data['date'];
+        $this->time = $data['time'];
+        $this->url = $data['url'];
         $this->save();
     }
 
