@@ -10,8 +10,8 @@ class Constructor extends Model
     use HasFactory;
 
     use HasFactory;
-
-    protected $primaryKey = 'ConstructorId';
+   
+    protected $primaryKey = 'constructorId';
 
     protected $hidden = ['created_at', 'update_at'];
 
@@ -23,7 +23,7 @@ class Constructor extends Model
         $this->save();
     }
 
-    public function updateDriver($data) {
+    public function updateConstructor($data) {
         $this->constructorRef = $data['constructorRef'];
         $this->save();
     }

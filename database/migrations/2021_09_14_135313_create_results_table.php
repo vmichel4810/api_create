@@ -16,11 +16,11 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id('resultId');
             $table->integer('raceId')->default(0);
-            $table->foreign('raceId')->references('raceId')->on('races');
+            $table->foreign('raceId')->references('raceId')->on('races')->onDelete("cascade");
             $table->integer('driverId')->default(0);
-            $table->foreign('driverId')->references('driverId')->on('drivers');
+            $table->foreign('driverId')->references('driverId')->on('drivers')->onDelete("cascade");
             $table->integer('constructorId')->default(0);
-            $table->foreign('constructorId')->references('constructorId')->on('constructors');
+            $table->foreign('constructorId')->references('constructorId')->on('constructors')->onDelete("cascade");
             $table->integer('number')->nullable();
             $table->integer('grid')->default(0);
             $table->integer('position')->nullable();

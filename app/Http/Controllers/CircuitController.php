@@ -33,30 +33,27 @@ class CircuitController extends Controller
         return response()->json($circuit, 201);
     }
 
-    public function show($circuit)
+    public function show($id)
     {
+        $circuit = Circuit::find($id);
         if($circuit) {
             return new CircuitResource($circuit);
         }
 
-        return response()->json('driver at not found', 404);
+        return response()->json('circuit not found', 404);
 
-        $driver = new Circuit();
-        $driver->FindOrFail($circuit);
-
-        return Response($circuit);
     }
 
 
     public function update(Request $request, circuit $circuit)
     {
-        $circuit->updateCircuit($circuit->all());
+        $circuit->updateCircuit($request->all());
 
-        return response()->json($circuit, 281);
+        return response()->json($circuit, 200);
     }
 
 
-    public function destroy(circuit $circuit)
+    public function destroy(Circuit $circuit)
     {
         $circuit->delete();
         return response()->json('Driver deleted', 204);

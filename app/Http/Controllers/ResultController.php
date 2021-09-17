@@ -29,6 +29,7 @@ class ResultController extends Controller
 
     public function show($result)
     {
+        $result = Result::find($id);
         if($result) {
             return new ResultResource($result);
         }
@@ -41,11 +42,11 @@ class ResultController extends Controller
         return Response($result);
     }
 
- 
+
     public function update($request, $result) {
         $result->updateResult($result->all());
 
-        return response()->json($result, 281);
+        return response()->json($result, 200);
     }
 
 

@@ -18,7 +18,7 @@ class CreateRacesTable extends Migration
             $table->integer('year')->default(0);
             $table->integer('round')->default(0);
             $table->integer('circuitId')->default(0);
-            $table->foreign('circuitId')->references('circuitId')->on('circuits');
+            $table->foreign('circuitId')->references('circuitId')->on('circuits')->onDelete("cascade");
             $table->string('name');
             $table->date('date')->default(0000-00-00);
             $table->time('time')->nullable();
