@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class CircuitController extends Controller
 {
-    
+
     public function index()
     {
         return new CircuitCollection(Circuit::paginate(15));
@@ -50,7 +50,7 @@ class CircuitController extends Controller
 
 
     public function update(Request $request, circuit $circuit)
-    {   
+    {
         $rules=array(
             "circuitRef"=>"required|min:4|max:20",
             "name"=>"required|min:4|max:20",
@@ -61,7 +61,7 @@ class CircuitController extends Controller
         }else{
 
             $circuit->updateCircuit($request->all());
-            
+
             return response()->json($circuit, 200);
         }
     }
@@ -73,19 +73,52 @@ class CircuitController extends Controller
         return response()->json('Driver deleted', 204);
     }
 
-    function search($surname) {
+    function search($data) {
 
-        $query = Circuit::query();
-        return Circuit::where("name", $surname)->get();
+        // $query = Circuit::query($data);
+        // $result = Circuit::where("circuitRef")->get($query);
+        // if($result) {
+        //     return Response()->json($result);
+        // } else {
+        //     return response()->json('No Data not found', 404);
+        // }
+            return Circuit::where('circuitRef', "like",'%'. $data . '%')->get();
+
     }
 
-    function filterData(Request $request) {
-        $circuit = collect([1, 2, 3, 4]);
+//     function filterData(Request $request) {
+//         $circuit = collect([1, 2, 3, 4]);
 
-        $filtered = $circuit->filter(function ($circuit, $key) {
-            return $circuit > 2;
-        });
+//         $filtered = $circuit->filter(function ($circuit, $key) {
+//             return $circuit > 2;
+//         });
 
-        $filtered->all();
-    }
-}
+//         $filtered->all();
+ 
+//     }
+//     public function searchFilters($request){
+//         $query = Circuit::query();
+//         if($request->has('circuitId')){
+//             $query = $query->where('title','like','%'.$request->name.'%');
+//         }
+//         if($request->has('circuitRef')){
+//             $query = $query->where('negotiable',$request->circuitRef);
+//         }
+//         if($request->has('name')){
+//             $query = $query->whereIn('name',$request->name);
+//         }
+//         if($request->has('location')){
+//             $query = $query->whereIn('location',$request->location);
+//         }
+//         if($request->has('country')){
+//             $query = $query->whereIn('country',$request->country);
+//         }
+//         if($request->has('lat')){
+//             $query = $query->whereHas('jobLanguageIds',function ($q) use($request){
+//                 $q->select('languages.id','languages.name')->where('languages.name',$request->language_name);
+//             });
+//         }
+//         return $query;
+//     }
+
+// }

@@ -39,7 +39,7 @@ Route::apiResources([
 
 Route::post('/register',[AuthController::class,'register']);
 
-Route::get("search/{surname}", [CircuitController::class, 'search']);
+Route::get("circuits/search/{circuitRef}", [CircuitController::class, 'search']);
 
 Route::post("login",[UserController::class,'index']);
 
