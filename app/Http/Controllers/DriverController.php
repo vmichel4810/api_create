@@ -6,6 +6,7 @@ use App\Http\Resources\DriverResource;
 use App\Http\Resources\DriverCollection;
 //models
 use App\Models\Driver;
+use App\Product;
 //illuminate
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
@@ -15,9 +16,18 @@ use Illuminate\Support\Facades\DB;
 
 class DriverController extends Controller
 {
+
+    public function sorted(Request $request) {
+        $query = Driver::query();
+
+        $sort = $request->input('sort');
+        $query->sortBy('surname', $sort);
+        return $query->get();
+    }
+
     public function index()
     {
-        return new DriverCollection(Driver::paginate(15));
+       return new DriverCollection(Driver::paginate(15));
     }
 
     public function show($id)

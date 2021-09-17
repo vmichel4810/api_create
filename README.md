@@ -20,7 +20,7 @@ Liens :
 
 - Pagination : Sur chaque pages 15 éléments sont visibles.
 - Sort : Le sort ne fonctionne pas, le code est dans Drivercontroller.php.
-- Search : sur circuitRef et name.
+- Search : Fonctionne sur le circuitRef et le name du circuit.
 - Filter : 
 
 ### Bonus
