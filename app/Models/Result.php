@@ -56,4 +56,8 @@ class Result extends Model
         $this->statusId = $data['statusId'];
         $this->save();
     }
+
+    public function Driver($data) {
+        return $this->belongsTo(Driver::class);
+    }
 }

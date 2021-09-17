@@ -41,7 +41,7 @@ Route::apiResources([
 //pagination
 
 Route::get('/drivers', function (){
-    return new DriverCollection(Driver::paginate(5));
+    return new DriverCollection;
 });
 Route::get('/circuits', function (){
     return new CircuitCollection(Circuit::paginate(5));
@@ -63,5 +63,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/products/{id}',[ProductController::class,'delete']);
     Route::post('/logout',[AuthController::class,'logout']);
 });
-
 

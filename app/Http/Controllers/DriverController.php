@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\DriverController as ControllersDriverController;
 use App\Http\Resources\DriverResource;
 
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\Response;
+use DB;
 
 class DriverController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        return Response(Driver::all());
+        return new ControllersDriverController(Driver::paginate(15));
     }
 
     /**
@@ -67,12 +72,12 @@ class DriverController extends Controller
         if ($driver) {
             return new DriverResource($driver);
         } 
-        return response()->json('merde', 404);
+        return response()->json('Driver not found', 404);
     }
 
     /**
     * @OA\Get(
-    * path="/api/drivers/{driver}",
+    * path="/api/drivers/{dr    iver}",
     * operationId="getAllDriver",
     * description="Return driver by ID.",
     * tags={"Drivers"},
