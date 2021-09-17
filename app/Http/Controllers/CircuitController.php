@@ -59,16 +59,21 @@ class CircuitController extends Controller
         return response()->json('Driver deleted', 204);
     }
 
-    function search($surname) {
+    function search($data) {
 
         $query = Circuit::query();
-        return Circuit::where("name", $surname)->get();
+        $result = Circuit::where("circuitRef")->get();
+        if($result) {
+            return Response()->json($result);
+        } else {
+            return response()->json('No Data not found', 404);
+        }
     }
 
     function validateData(Request $request) {
         $rules=array(
             "name"=>"required|min:2|max:4",
-            "circuitRef"=>"required",
+            "circuitRef"=>"required|min:4|max:8",
         );
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()) {
@@ -86,14 +91,29 @@ class CircuitController extends Controller
             }
         }
     }
-
-    function filterData(Request $request) {
-        $circuit = collect([1, 2, 3, 4]);
-
-        $filtered = $circuit->filter(function ($circuit, $key) {
-            return $circuit > 2;
-        });
-
-        $filtered->all();
+    public function searchFilters($request){
+        $query = Circuit::query();
+        if($request->has('circuitId')){
+            $query = $query->where('title','like','%'.$request->name.'%');
+        }
+        if($request->has('circuitRef')){
+            $query = $query->where('negotiable',$request->circuitRef);
+        }
+        if($request->has('name')){
+            $query = $query->whereIn('name',$request->name);
+        }
+        if($request->has('location')){
+            $query = $query->whereIn('location',$request->location);
+        }
+        if($request->has('country')){
+            $query = $query->whereIn('country',$request->country);
+        }
+        if($request->has('lat')){
+            $query = $query->whereHas('jobLanguageIds',function ($q) use($request){
+                $q->select('languages.id','languages.name')->where('languages.name',$request->language_name);
+            });
+        }
+        return $query;
     }
+
 }
